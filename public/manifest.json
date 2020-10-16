@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Dice Beyond",
+  "version": "0.1",
+  "description": "A Chrome extension for changing the dice color in D&D Beyond",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "icons": {
+    "16": "logo-small.png",
+    "48": "logo-small.png",
+    "128": "logo-small.png"
+  },
+  "content_security_policy": "script-src 'self' 'sha256-Ewng36xEf4iqMlfMxynWQxlWERj8M7XY4Puz/v46q78='; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": ["*://*.dndbeyond.com/*"],
+      "js": ["content-script/init.js"]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "web-accessible-resources/color-dice-xhr-intercept.js"
+  ]
+}
