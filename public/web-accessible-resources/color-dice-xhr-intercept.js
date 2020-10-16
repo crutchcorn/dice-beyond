@@ -1,8 +1,9 @@
-(function () {
+(async function () {
     'use strict'
 
-    console.log('mock-me-chrome installing...')
+    const dataMeta = document.querySelector('meta[name="DiceBGHex"]');
 
+    let bgHex = dataMeta.content || '#FFFFFF';
 
 const yesResponse = `{
     "setName":"Example",
@@ -96,7 +97,7 @@ const yesResponse = `{
         "materials": {
             "default": {
                 "properties": {
-                    "albedoColor": "#ffffff",
+                    "albedoColor": "${bgHex}",
                     "numberColor": "#000000",
                     "numberHighlightColor": "#ff5d3a",
                     "metallic": 0.75,
@@ -130,9 +131,7 @@ const yesResponse = `{
                 url.endsWith('/dice/manifests/default-contrast.json') ||
                 url.endsWith('/dice/manifests/default.json')
             ) {
-                console.log('mock-me-chrome: xhr open', arguments)
                 const originalResponse =  original.apply(this, arguments);
-                console.log(this)
                 Object.defineProperty(this, "response", {
                     get() { return yesResponse; },
                     set(v) { },

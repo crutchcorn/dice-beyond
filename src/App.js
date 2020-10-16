@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [backgroundHex, setBGHex] = React.useState('#FFFFFF');
+
+  React.useEffect(() => {
+    chrome.storage.sync.set({backgroundHex}, function() {
+      console.log('Value is set to ' + backgroundHex);
+    });
+  }, [backgroundHex]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn how to make this window bigger
-        </a>
-      </header>
+      <input onChange={e => setBGHex(e.target.value)} value={backgroundHex}/>
     </div>
   );
 }
