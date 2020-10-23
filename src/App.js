@@ -3,15 +3,43 @@ import './App.css';
 import {TabContents} from "./components/TabContents";
 
 function App() {
-    const [backgroundHex, setBGHex] = React.useState('#000001');
-    const [textHex, setTextHex] = React.useState('#000001');
-    const [rollHex, setRollHex] = React.useState('#000001');
+    /**
+     * Code for data handling
+     */
+    const [backgroundHex, setBGHex] = React.useState('#000000');
+    const [textHex, setTextHex] = React.useState('#000000');
+    const [rollHex, setRollHex] = React.useState('#000000');
+
+    React.useEffect(() => {
+        chrome.storage.sync.get(['backgroundHex', 'textHex', 'rollHex'], function(result) {
+            console.log('Retrieved values ' + result);
+            setBGHex(result['backgroundHex'] || '#000000')
+            setTextHex(result['textHex'] || '#000000')
+            setRollHex(result['rollHex'] || '#000000')
+        });
+    }, [])
 
     React.useEffect(() => {
         chrome.storage.sync.set({backgroundHex}, function () {
             console.log('Value is set to ' + backgroundHex);
         });
     }, [backgroundHex]);
+
+    React.useEffect(() => {
+        chrome.storage.sync.set({textHex}, function () {
+            console.log('Value is set to ' + textHex);
+        });
+    }, [textHex]);
+
+    React.useEffect(() => {
+        chrome.storage.sync.set({rollHex}, function () {
+            console.log('Value is set to ' + rollHex);
+        });
+    }, [rollHex]);
+
+    /**
+     * Code to handle tabbing
+     */
 
     const diceRef = React.useRef();
     const textRef = React.useRef();
