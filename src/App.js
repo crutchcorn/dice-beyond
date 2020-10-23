@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+import {ColorPicker} from "./ColorPicker";
 
-function App() {
+function App(props) {
   const [backgroundHex, setBGHex] = React.useState('#FFFFFF');
 
   React.useEffect(() => {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <input onChange={e => setBGHex(e.target.value)} value={backgroundHex}/>
+      <ColorPicker onChange={val => setBGHex(val.hex)} color={backgroundHex}/>
     </div>
   );
 }
