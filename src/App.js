@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {ColorPicker} from "./ColorPicker";
+import {TabContents} from "./components/TabContents";
 
-function App(props) {
-  const [backgroundHex, setBGHex] = React.useState('#FFFFFF');
+function App() {
+  const [backgroundHex, setBGHex] = React.useState('#000001');
 
   React.useEffect(() => {
     chrome.storage.sync.set({backgroundHex}, function() {
@@ -13,8 +13,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <input onChange={e => setBGHex(e.target.value)} value={backgroundHex}/>
-      <ColorPicker onChange={val => setBGHex(val.hex)} color={backgroundHex}/>
+        <TabContents color={backgroundHex} setColor={setBGHex} />
     </div>
   );
 }
