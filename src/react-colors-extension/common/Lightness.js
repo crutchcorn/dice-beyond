@@ -39,22 +39,25 @@ export class Lightness extends (PureComponent || Component) {
                 },
                 container: {
                     padding: '0 2px',
+                    marginTop: '0.5rem',
+                    marginBottom: '0.5rem',
                     position: 'relative',
-                    height: '100%',
-                    borderRadius: this.props.radius,
+                    height: '0.5rem',
+                    borderRadius: '0.5rem',
                 },
                 pointer: {
                     position: 'absolute',
+                    top: '-0.5rem',
                     left: `${ (this.props.hsl.l * 100) }%`,
                 },
                 slider: {
                     marginTop: '1px',
-                    width: '4px',
-                    borderRadius: '1px',
-                    height: '8px',
-                    boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
+                    width: '1.25rem',
+                    borderRadius: '50%',
+                    height: '1.25rem',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.4)',
                     background: '#fff',
-                    transform: 'translateX(-2px)',
+                    transform: 'translateX(-0.5rem)',
                 },
             },
             'vertical': {
@@ -98,5 +101,3 @@ export class Lightness extends (PureComponent || Component) {
         )
     }
 }
-
-export default Lightness
